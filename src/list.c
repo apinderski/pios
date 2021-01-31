@@ -3,7 +3,7 @@
 #include "list.h"
 
 
-//Source: did with Jack //Collaborated with Austin P.
+//Source: did with Harris & Brianna, also got help from Jack
 void list_add(struct list_element *head, struct list_element* ele)
 {
 	struct list_element* prev;
@@ -14,26 +14,22 @@ void list_add(struct list_element *head, struct list_element* ele)
 	}
 	temp->prev = prev;
 	temp->next = ele;
-}
-//list_remove
-//Source: 
-void list_remove(struct list_element *head, int index_loc) 
-{ 
-    //index
-    struct list_element* prev;
-    struct list_element* temp = head;
-    int counter = 0;
-    while(temp->next){
-		if (counter == index_loc){
-			temp = prev;
-			prev = temp->next;
-			break;
-		}
-		else if(head==NULL){
-			return;
-		}
-		else{
-			counter++;
-		}			
-	}
 } 
+void list_remove(struct list_element** head, int data) 
+{ 
+	struct list_element* head_pointer = *head;
+	if(head == NULL) {
+		return;  
+	}
+	if (head_pointer->data == data){
+		*head = head_pointer->next;
+		return;	
+	}
+	while(head_pointer->next){
+		if(data == head_pointer->next->data) {
+				head_pointer->next = head_pointer->next->next;
+				break;
+	}
+	head_pointer = head_pointer->next;
+	}
+}
