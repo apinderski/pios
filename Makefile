@@ -1,5 +1,4 @@
 
-
 CC := gcc
 LD := ld
 OBJDUMP := objdump
@@ -15,6 +14,7 @@ SDIR = src
 OBJS = \
 	boot.o \
 	kernel_main.o \
+	list.o \
 
 
 
@@ -30,7 +30,7 @@ $(ODIR)/%.o: $(SDIR)/%.s
 all: bin rootfs.img
 
 bin: $(OBJ)
-	$(LD) obj/* -Tkernel.ld -o kernel8.img
+	$(LD) obj/* -T kernel.ld -o kernel8.img
 	cp kernel8.img kernel8.elf
 	$(OBJCOPY) -O binary kernel8.img
 	size kernel8.elf
@@ -60,5 +60,4 @@ rootfs.img:
 	sudo mkdir /mnt/disk/bin
 	sudo mkdir /mnt/disk/etc
 	sudo umount /mnt/disk
-
 
