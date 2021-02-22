@@ -3,7 +3,7 @@
 #include "list.h"
 
 
-//Source: did with Harris & Brianna, also got help from Jack
+//Source: did with Jack
 void list_add(struct list_element *head, struct list_element* ele)
 {
 	struct list_element* prev;
@@ -33,3 +33,4 @@ void list_remove(struct list_element** head, int data)
 	head_pointer = head_pointer->next;
 	}
 }
+
