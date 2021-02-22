@@ -27,7 +27,7 @@ void kernel_main(){
 		delay();
 	}
 }
-//HW1
+
 void bss_to_zero(){
 	(&__bss_start)[0] = 0x0c;
 	int x=0;
