@@ -1,4 +1,0 @@
-
-void putc(char data){
-	
-}
