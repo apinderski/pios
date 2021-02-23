@@ -2,6 +2,7 @@
  
 .section ".kernel-header"
 
+
 // Kernel Header
 // See https://www.kernel.org/doc/Documentation/arm64/booting.txt
 b _start           /* CODE0 : Executable code */
