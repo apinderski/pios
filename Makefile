@@ -17,7 +17,7 @@ OBJS = \
 	list.o \
 	serial.o \
 	blinky.o \
-
+	rprintf.o \
 
 
 OBJ = $(patsubst %,$(ODIR)/%,$(OBJS))

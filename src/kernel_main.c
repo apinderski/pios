@@ -1,9 +1,10 @@
-#include <stdio.h>
+
 void bss_to_zero();
 extern int __bss_start;
 extern int __bss_end;
 #include "list.h"
 #include "blinky.h"
+#include "rprintf.h"
 int global;
 struct list_element b = {NULL,NULL, 1};
 struct list_element a = {NULL,NULL, 5};
@@ -14,12 +15,13 @@ struct list_element* list = &a;
 void kernel_main(){
 	/*
 	bss_to_zero();
-	list_add(list, &b);
+	list_add(list, &b);ß
 	list_add(list, &c);
 	list_remove(head, 1); 
 	*/
 	//int *mu_io_reg = 0x7E215040;
 	led_init();
+	//esp_printf(putc, "Hi Jack %d", kernel_main)
 	while (1){
 		led_on();
 		delay();
@@ -27,7 +29,7 @@ void kernel_main(){
 		delay();
 	}
 }
-
+//HW1
 void bss_to_zero(){
 	(&__bss_start)[0] = 0x0c;
 	int x=0;
@@ -36,3 +38,10 @@ void bss_to_zero(){
 		x++;
 	}
 }
+
+/**void putc(int data){
+	int *mu_io_reg = 0x3F2155040;
+	*mu_io_reg = data;
+}
+* */
+	
