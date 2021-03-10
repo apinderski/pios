@@ -1,39 +1,31 @@
-
 void bss_to_zero();
 extern int __bss_start;
 extern int __bss_end;
+extern struct ppage* free_list;
 #include "list.h"
 #include "blinky.h"
 #include "rprintf.h"
 #include "serial.h"
+#include "page.h"
 int global;
 #define NULL (void*)0
-struct list_element b = {NULL,NULL, 1};
-struct list_element a = {NULL,NULL, 5};
-struct list_element c = {NULL,NULL, 2};
-struct list_element *head = &a;
-struct list_element* list = &a;
-
 
 void kernel_main(){
-	/*
-	bss_to_zero();
-	list_add(list, &b);ß
-	list_add(list, &c);
-	list_remove(head, 1); 
-	*/
-	//int *mu_io_reg = 0x7E215040;
-	//led_init();
-	esp_printf(putc, "Hi Jack %x", kernel_main);
+	//worked with Haris and followed along with Neil's instruction in class
+	init_pfa_list();
+	struct ppage* test = free_list->next;
+	esp_printf(putc, "Physcial addr:  %x \n", test->physical_addr);
+	test = allocate_physical_pages(2);
+	esp_printf(putc, "physical pages -->  %x \n", test);
+	esp_printf(putc, "physical pages -->  %x \n", test->physical_addr);
+	free_physical_pages(test);
+	test = free_list->next;
+	esp_printf(putc, "After freeing:  %x \n", test->physical_addr);
 	while (1){
-		//led_on();
-		//delay();
-		//led_off();
-		//delay();
 		
 	}
 }
-//HW1
+//old hw
 void bss_to_zero(){
 	(&__bss_start)[0] = 0x0c;
 	int x=0;
@@ -43,6 +35,3 @@ void bss_to_zero(){
 	}
 }
 
-
-
-	
